@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/productCardFragment">
+
+    <fragment
+        android:id="@+id/productCardFragment"
+        android:name="com.example.shoesmarket.ui.ProductCardFragment"
+        android:label="fragment_product_card"
+        tools:layout="@layout/fragment_product_card">
+        <action
+            android:id="@+id/action_productCardFragment_to_testFragment"
+            app:destination="@id/testFragment" />
+        <action
+            android:id="@+id/action_productCardFragment_to_reviewsFragment"
+            app:destination="@id/allReviewsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.example.shoesmarket.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/allReviewsFragment"
+        android:name="com.example.shoesmarket.AllReviewsFragment"
+        android:label="fragment_reviews"
+        tools:layout="@layout/fragment_reviews" />
+</navigation>

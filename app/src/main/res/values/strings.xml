@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ShoesStore</string>
+    <string name="just_shoes_images">just shoes images</string>
+    <string name="nike_air_max_97">Кроссовки Nike Air Max 97 с оригинальным волнистым дизайном, вдохновленным японскими скоростными пассажирскими экспрессами, позволяют вам развивать свой стиль на полной скорости.</string>
+    <string name="image_for_shoes_color">image for shoes color</string>
+
+    <string-array name="months">
+        <item>January</item>
+        <item>January</item>
+        <item>Jadnuary</item>
+        <item>dcJanuary</item>
+        <item>nuary</item>
+        <item>Jaary</item>
+        <item>Januy</item>
+        <item>Januar</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
