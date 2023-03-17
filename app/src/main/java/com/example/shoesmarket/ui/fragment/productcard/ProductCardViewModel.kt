@@ -1,10 +1,10 @@
-package com.example.shoesmarket.ui
+package com.example.shoesmarket.ui.fragment.productcard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.shoesmarket.App
-import com.example.shoesmarket.BaseViewModel
+import com.example.shoesmarket.core.ui.BaseViewModel
 import com.example.shoesmarket.data.remote.model.ProductDetailList
 import com.example.shoesmarket.data.remote.model.ShoesColorModel
 import com.example.shoesmarket.utils.UIState

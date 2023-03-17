@@ -6,11 +6,18 @@
     android:id="@+id/parentContainer"
     android:layout_height="match_parent">
 
+    <include
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/progress"
+        layout="@layout/item_progres_bar"/>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollVeiw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -57,7 +64,6 @@
                 android:id="@+id/name"
                 style="@style/Base.TextView"
                 android:layout_marginTop="33dp"
-                android:text="Nike sneakers"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +73,6 @@
                 android:id="@+id/price"
                 style="@style/Base.TextView"
                 android:layout_marginTop="33dp"
-                android:text="4590c"
                 android:textColor="@color/blue"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -113,7 +118,6 @@
                 android:layout_width="0dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="4dp"
-                android:text="@string/nike_air_max_97"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +153,7 @@
                     android:layout_weight="1"
                     android:background="@color/nothing"
                     android:focusableInTouchMode="false"
-                    android:text="39"
+                    android:text="4"
                     android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>

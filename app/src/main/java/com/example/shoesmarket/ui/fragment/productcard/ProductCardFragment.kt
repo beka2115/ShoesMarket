@@ -1,4 +1,4 @@
-package com.example.shoesmarket.ui
+package com.example.shoesmarket.ui.fragment.productcard
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -10,18 +10,23 @@ import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.shoesmarket.R
-import com.example.shoesmarket.ui.adapters.ColorShoesAdapter
-import com.example.shoesmarket.ui.adapters.ReviewAdapter
-import com.example.shoesmarket.ui.adapters.ShoesPagerAdapter
-import com.example.shoesmarket.ui.adapters.SimilarShoesAdapter
+import com.example.shoesmarket.core.extension.emailCheck
+import com.example.shoesmarket.core.extension.initHorizontalAdapter
+import com.example.shoesmarket.core.extension.nameReviewCheck
+import com.example.shoesmarket.ui.fragment.productcard.adapters.ColorShoesAdapter
+import com.example.shoesmarket.ui.fragment.productcard.adapters.ReviewAdapter
+import com.example.shoesmarket.ui.fragment.productcard.adapters.ShoesPagerAdapter
+import com.example.shoesmarket.ui.fragment.productcard.adapters.SimilarShoesAdapter
 import com.example.shoesmarket.databinding.FragmentProductCardBinding
-import com.example.shoesmarket.ui.base.BaseFragment
+import com.example.shoesmarket.core.ui.BaseFragment
+import com.example.shoesmarket.utils.UIState
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -43,9 +48,26 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
         const val WRITE_NEW_REVIEW = "Написать новый отзыв"
     }
 
+    override fun initialize() {
+        setUpRequests()
+        initRating()
+        initTextFabric()
+        initReductor()
+        editEmailCheck()
+        editReviewNameCheck(
+            editText = binding.editName,
+            editTextContainer = binding.editNameContainer,
+            20
+        )
+        editReviewNameCheck(
+            editText = binding.editReview,
+            editTextContainer = binding.editReviewContainer,
+            300
+        )
+    }
+
     override fun initClickers() {
         with(binding) {
-
             btnAdd.setOnClickListener {
                 findNavController().navigate(R.id.testFragment)
             }
@@ -86,24 +108,6 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
                 }
             }
         }
-    }
-
-    override fun initialize() {
-        setUpRequests()
-        initRating()
-        initTextFabric()
-        initReductor()
-        editEmailCheck()
-        editReviewNameCheck(
-            editText = binding.editName,
-            editTextContainer = binding.editNameContainer,
-            20
-        )
-        editReviewNameCheck(
-            editText = binding.editReview,
-            editTextContainer = binding.editReviewContainer,
-            300
-        )
     }
 
     private fun initReductor() {
@@ -210,20 +214,12 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
             shoesPagerAdapter = ShoesPagerAdapter()
             shoesPager.adapter = shoesPagerAdapter
             indicator.setViewPager(shoesPager)
-
-            recyclerColor.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerColor.initHorizontalAdapter()
             recyclerColor.adapter = adapterColor
-
-            recyclerSimilar.layoutManager =
-                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerSimilar.initHorizontalAdapter()
             recyclerSimilar.adapter = adapterSimilar
-            binding.recyclerRreview.layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.HORIZONTAL, false
-            )
-            binding.recyclerRreview.adapter = adapterReview
-
+            recyclerRreview.initHorizontalAdapter()
+            recyclerRreview.adapter = adapterReview
         }
     }
 
@@ -267,7 +263,7 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
         maxLength: Int
     ) {
         editText.doOnTextChanged { text, _, _, _ ->
-            if (nameReviewCheck(editText)) {
+            if (editText.nameReviewCheck()) {
                 if (text!!.length < maxLength) {
                     editTextContainer.boxStrokeWidth = 0
                     editTextContainer.helperText = null
@@ -291,7 +287,7 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
     private fun editEmailCheck() {
         with(binding) {
             editEmail.doOnTextChanged { _, _, _, _ ->
-                if (emailCheck()) {
+                if ( editEmail.emailCheck()) {
                     editEmailContainer.boxStrokeWidth = 0
                     editEmailContainer.helperText = null
                     editEmail.background =
@@ -305,7 +301,7 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
     private fun emailChecker(): Boolean {
         var answer = false
         with(binding) {
-            if (!emailCheck()) {
+            if (!editEmail.emailCheck()) {
                 editEmailContainer.boxStrokeWidth = 3
                 editEmailContainer.helperText = "invalid E-mail address"
                 editEmail.background = ContextCompat.getDrawable(
@@ -313,7 +309,7 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
                     R.drawable.bg_error_edittext
                 )
                 answer = false
-            } else if (emailCheck()) {
+            } else if (editEmail.emailCheck()) {
                 editEmailContainer.boxStrokeWidth = 0
                 editEmailContainer.helperText = null
                 editEmail.background = ContextCompat.getDrawable(
@@ -333,7 +329,7 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
     ): Boolean {
         var answer = false
 
-        if (!nameReviewCheck(editText)) {
+        if (!editText.nameReviewCheck()) {
             editContainer.boxStrokeWidth = 3
             editContainer.helperText = errorHelperText
             editText.background = ContextCompat.getDrawable(
@@ -341,7 +337,7 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
                 R.drawable.bg_error_edittext
             )
             answer = false
-        } else if (nameReviewCheck(editText)) {
+        } else if (editText.nameReviewCheck()) {
             editContainer.boxStrokeWidth = 0
             editContainer.helperText = null
             editText.background = ContextCompat.getDrawable(
@@ -353,19 +349,6 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
         return answer
     }
 
-    private fun emailCheck(): Boolean {
-        var answer: Boolean
-        with(binding) {
-            val emailColor = editEmail.text.toString()
-            answer = Patterns.EMAIL_ADDRESS.matcher(emailColor).matches()
-        }
-        return answer
-    }
-
-    private fun nameReviewCheck(editText: EditText): Boolean {
-        return editText.text?.isNotEmpty() == true
-    }
-
     private fun setUpRequests() {
         viewModel.getProductDetailList(1)
     }
@@ -374,13 +357,19 @@ class ProductCardFragment : BaseFragment(R.layout.fragment_product_card) {
         with(binding){
             viewModel.getProductDetailState.collectUIState(
                 state = { state ->
-
+                    binding.progress.progressContainer.isVisible = state is UIState.Loading
                 },
                 onSuccess = {
-                    shoesPagerAdapter.addShoes(it.image)
+                    Log.e("ololo","5")
+                    Log.e("ololo","100"+it.image.toString())
+                    if (it.image!=null){
+                        shoesPagerAdapter.addShoes(it.image)
+                    }
+                    Log.e("ololo","6")
                     price.text = it.price
                     name.text = it.name
                     description.text = it.description
+                    autoCompleteTextView.setText(it.size.toString())
                     sizeOfShoes.add(it.size.toString())
                 }
             )

@@ -1,4 +1,4 @@
-package com.example.shoesmarket
+package com.example.shoesmarket.ui.fragment.allreviews
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.shoesmarket.ui.adapters.AllReviewAdapter
+import com.example.shoesmarket.ui.fragment.allreviews.adapter.AllReviewAdapter
 import com.example.shoesmarket.databinding.FragmentReviewsBinding
-import com.example.shoesmarket.ui.ProductCardViewModel
+import com.example.shoesmarket.ui.fragment.productcard.ProductCardViewModel
 
 
 class AllReviewsFragment : Fragment() {

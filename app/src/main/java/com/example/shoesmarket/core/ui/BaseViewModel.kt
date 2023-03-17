@@ -1,8 +1,8 @@
-package com.example.shoesmarket
+package com.example.shoesmarket.core.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.shoesmarket.network.Resource
+import com.example.shoesmarket.core.network.result.Resource
 import com.example.shoesmarket.utils.UIState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

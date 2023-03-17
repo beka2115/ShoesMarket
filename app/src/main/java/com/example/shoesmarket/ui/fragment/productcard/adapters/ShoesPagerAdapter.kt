@@ -1,4 +1,4 @@
-package com.example.shoesmarket.ui.adapters
+package com.example.shoesmarket.ui.fragment.productcard.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -38,7 +38,12 @@ class ShoesPagerAdapter : RecyclerView.Adapter<ShoesPagerAdapter.ShoesPagerViewH
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(imgShoes: String) {
-            Glide.with(binding.imgPagerShoes).load(imgShoes).into(binding.imgPagerShoes)
+            if (imgShoes!=null){
+                Glide.with(binding.imgPagerShoes).load(imgShoes).into(binding.imgPagerShoes)
+            }else{
+                Glide.with(binding.imgPagerShoes).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz9RJkNDp7C_87ZaWPnkr1ZbJPjdDodDUJWw&usqp=CAU").into(binding.imgPagerShoes)
+            }
+
         }
     }
 }

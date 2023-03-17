@@ -1,4 +1,4 @@
-package com.example.shoesmarket.ui.adapters
+package com.example.shoesmarket.ui.fragment.productcard.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -40,7 +40,11 @@ class SimilarShoesAdapter : RecyclerView.Adapter<SimilarShoesAdapter.SimilarShoe
     inner class SimilarShoesViewHolder(private val binding: ItemSimilarBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(imgSimilar: String) {
-            Glide.with(binding.imgSimilar).load(imgSimilar).into(binding.imgSimilar)
+            if (imgSimilar!=null){
+                Glide.with(binding.imgSimilar).load(imgSimilar).into(binding.imgSimilar)
+            }else{
+                Glide.with(binding.imgSimilar).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz9RJkNDp7C_87ZaWPnkr1ZbJPjdDodDUJWw&usqp=CAU").into(binding.imgSimilar)
+            }
         }
     }
 

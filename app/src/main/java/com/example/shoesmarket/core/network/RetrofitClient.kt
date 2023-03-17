@@ -1,4 +1,4 @@
-package com.example.shoesmarket.network
+package com.example.shoesmarket.core.network
 
 import com.example.shoesmarket.data.remote.ApiService
 import okhttp3.OkHttpClient

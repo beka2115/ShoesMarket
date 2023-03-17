@@ -1,4 +1,4 @@
-package com.example.shoesmarket.ui.adapters
+package com.example.shoesmarket.ui.fragment.allreviews.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.shoesmarket.network
+package com.example.shoesmarket.core.network.result
 
 enum class Status {
     SUCCESS,

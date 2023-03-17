@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/productCardFragment"
-        android:name="com.example.shoesmarket.ui.ProductCardFragment"
+        android:name="com.example.shoesmarket.ui.fragment.productcard.ProductCardFragment"
         android:label="fragment_product_card"
         tools:layout="@layout/fragment_product_card">
         <action
@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_test" />
     <fragment
         android:id="@+id/allReviewsFragment"
-        android:name="com.example.shoesmarket.AllReviewsFragment"
+        android:name="com.example.shoesmarket.ui.fragment.allreviews.AllReviewsFragment"
         android:label="fragment_reviews"
         tools:layout="@layout/fragment_reviews" />
 </navigation>

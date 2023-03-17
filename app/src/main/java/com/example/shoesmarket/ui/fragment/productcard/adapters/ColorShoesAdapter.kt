@@ -1,4 +1,4 @@
-package com.example.shoesmarket.ui.adapters
+package com.example.shoesmarket.ui.fragment.productcard.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -61,7 +61,11 @@ class ColorShoesAdapter(
                 binding.imgColorStroke.isVisible = false
             }
 
-            Glide.with(binding.imgColor).load(img.shoesColorImg).into(binding.imgColor)
+            if (img!=null){
+                Glide.with(binding.imgColor).load(img.shoesColorImg).into(binding.imgColor)
+            }else{
+                Glide.with(binding.imgColor).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSicoLatj9BkwHFaYWSCiJcSxIcucZ1ISDg_Q&usqp=CAU").into(binding.imgColor)
+            }
         }
 
         private fun checkClick(isItClicked: Boolean): Boolean {

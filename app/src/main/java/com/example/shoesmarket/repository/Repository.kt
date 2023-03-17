@@ -2,7 +2,7 @@ package com.example.shoesmarket.repository
 
 import com.example.shoesmarket.data.remote.RemoteDataSource
 import com.example.shoesmarket.data.remote.model.ProductDetailList
-import com.example.shoesmarket.network.Resource
+import com.example.shoesmarket.core.network.result.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

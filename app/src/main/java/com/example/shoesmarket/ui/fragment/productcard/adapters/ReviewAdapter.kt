@@ -1,4 +1,4 @@
-package com.example.shoesmarket.ui.adapters
+package com.example.shoesmarket.ui.fragment.productcard.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -40,7 +40,12 @@ class ReviewAdapter : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(review:String) {
             binding.stars5.star1.height = 15
-            Glide.with(binding.reviewProfilImg).load(review).into(binding.reviewProfilImg)
+            if (review!=null){
+                Glide.with(binding.reviewProfilImg).load(review).into(binding.reviewProfilImg)
+            }else{
+                Glide.with(binding.reviewProfilImg).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz9RJkNDp7C_87ZaWPnkr1ZbJPjdDodDUJWw&usqp=CAU").into(binding.reviewProfilImg)
+            }
+
         }
     }
 }
